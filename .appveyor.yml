@@ -16,7 +16,7 @@ before_build:
   - git submodule update --init --recursive
   
 artifacts:
-  - path: build
+  - path: build\bin
     name: release
     type: zip
 
