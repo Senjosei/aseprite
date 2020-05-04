@@ -15,6 +15,10 @@ install:
 before_build:
   - git submodule update --init --recursive
   
+after_build:
+  - cd build
+  - dir
+  
 artifacts:
   - path: build\bin
     name: release
