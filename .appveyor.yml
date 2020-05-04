@@ -1,9 +1,9 @@
 environment:
   matrix:
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-      VCVARS_FILE: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat
-      VCVARS_ARG:
-      ENABLE_UI: ON
+#     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+#       VCVARS_FILE: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat
+#       VCVARS_ARG:
+#       ENABLE_UI: ON
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
       VCVARS_FILE: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat
       VCVARS_ARG:
