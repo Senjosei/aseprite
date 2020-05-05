@@ -17,8 +17,9 @@ before_build:
   
 after_build:
   - cd ..
-  - 7z a release.zip build\aseprite.exe
-  - 7z a release.zip build\data\
+  - dir
+  - 7z a release.zip build\bin\aseprite.exe
+  - 7z a release.zip build\bin\data\
   - cd build
   - cd bin
   - dir
