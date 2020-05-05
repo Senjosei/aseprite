@@ -12,7 +12,7 @@ environment:
 install:
   - mkdir skia
   - cd skia
-  - appveyor DownloadFile https://github.com/aseprite/skia/releases/download/m81-b607b32047/Skia-Windows-Release-x64.zip skia.zip
+  - appveyor DownloadFile https://github.com/aseprite/skia/releases/download/m81-b607b32047/Skia-Windows-Release-x64.zip -FileName skia.zip
   - 7z x skia.zip
   - del /F /Q skia.zip
   - cd ..
