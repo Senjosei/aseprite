@@ -19,6 +19,8 @@ after_build:
   - cd ..
   - dir
   - 7z a release.zip build\bin\aseprite.exe
+  - 7z a release.zip build\bin\gen.exe
+  - 7z a release.zip build\bin\modp_b64_gen.exe
   - 7z a release.zip build\bin\data\
   - cd build
   - cd bin
