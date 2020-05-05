@@ -10,15 +10,15 @@ environment:
       ENABLE_UI: ON
 
 install:
-  - call "%VCVARS_FILE%" %VCVARS_ARG%
-
-before_build:
   - mkdir skia
   - cd skia
   - Invoke-WebRequest -OutFile skia.zip https://github.com/aseprite/skia/releases/download/m81-b607b32047/Skia-Windows-Release-x64.zip
   - 7z x skia.zip
   - del /F /Q skia.zip
   - cd ..
+  - call "%VCVARS_FILE%" %VCVARS_ARG%
+
+before_build:
   - git submodule update --init --recursive
   
 after_build:
