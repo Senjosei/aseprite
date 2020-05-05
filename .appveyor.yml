@@ -13,6 +13,12 @@ install:
   - call "%VCVARS_FILE%" %VCVARS_ARG%
 
 before_build:
+  - mkdir skia
+  - cd skia
+  - Invoke-WebRequest -OutFile skia.zip https://github.com/aseprite/skia/releases/download/m81-b607b32047/Skia-Windows-Release-x64.zip
+  - 7z x skia.zip
+  - del /F /Q skia.zip
+  - cd ..
   - git submodule update --init --recursive
   
 after_build:
@@ -21,6 +27,7 @@ after_build:
   - cd bin
   - del /F /Q *.pdb
   - del /F /Q *.ilk
+  - del /F /Q *tests.exe
   - dir
   
 artifacts:
@@ -31,6 +38,5 @@ artifacts:
 build_script:
   - mkdir build
   - cd build
-  - cmake .. -G "NMake Makefiles" -DENABLE_TESTS=ON -DENABLE_UI=%ENABLE_UI%
-  - nmake
-  - ctest --output-on-failure
+  - cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DLAF_BACKEND=skia -DSKIA_DIR=C:\projects\aseprite\skia -DSKIA_LIBRARY_DIR=C:\projects\aseprite\skia\out\Release-x64 -G Ninja ..
+  - ninja aseprite
