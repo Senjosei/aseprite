@@ -16,11 +16,15 @@ before_build:
   - git submodule update --init --recursive
   
 after_build:
+  - cd ..
+  - 7z a release.zip build\aseprite.exe
+  - 7z a release.zip build\data\
   - cd build
+  - cd bin
   - dir
   
 artifacts:
-  - path: build\bin
+  - path: release.zip
     name: release
     type: zip
 
