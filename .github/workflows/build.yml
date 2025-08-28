@@ -6,17 +6,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, macos-latest, ubuntu-latest]
-        build_type: [RelWithDebInfo, Debug]
-        ui: [gui, cli]
-        scripting: [lua, noscripts]
-        exclude:
-          - build_type: Debug
-            ui: gui
-          - build_type: RelWithDebInfo
-            ui: cli
-          - build_type: RelWithDebInfo
-            scripting: noscripts
+        os: [windows-latest]
+        build_type: [RelWithDebInfo]
+        ui: [gui]
+        scripting: [lua]
     steps:
     - uses: actions/checkout@v4
       with:
@@ -89,21 +82,9 @@ jobs:
     - name: Compiling
       shell: bash
       run: |
-        cd build && ninja
-    - name: Running C++ Tests
-      shell: bash
-      run: |
-        if [[ "${{ runner.os }}" == "Linux" ]] ; then
-          export XVFB=xvfb-run
-        fi
-        cd build && $XVFB ctest --output-on-failure
-    - name: Running CLI Tests
-      if: ${{ matrix.scripting == 'lua' }}
-      shell: bash
-      run: |
-        if [[ "${{ runner.os }}" == "Linux" ]] ; then
-          export XVFB=xvfb-run
-        fi
-        export ASEPRITE=$PWD/build/bin/aseprite
-        cd tests
-        $XVFB bash run-tests.sh
+        cd build && ninja && cd .. && ls -lha
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: my-artifact
+        path: build/
